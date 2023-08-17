@@ -2,15 +2,14 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/UI/Button";
 import logo from '../assets/logo.png'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/UI/DropdownMenu";
-import { HiBookOpen } from "react-icons/hi";
-import { HiHeart } from "react-icons/hi";
+import { HiBookOpen ,HiHeart} from "react-icons/hi";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/UI/Avatar";
 
 
 const NavBar = () => {
     return (
-        <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
-      <div className="h-full w-full bg-gray-200/50">
+        <nav className="w-full h-16 fixed top backdrop-blur-lg shadow-md z-10">
+      <div className="h-full w-full bg-white/5">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto p-8">
           <div className="flex justify-between font-bold items-center">
             <div className="mr-5"><img className="h-8" src={logo} alt="log" /></div>

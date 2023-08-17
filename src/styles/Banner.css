@@ -24,8 +24,6 @@
   align-items: flex-start;
   margin-right: 135px;
   height: 100%;
-  padding: 20px;
-  text-align: left;
 }
 
 .semi-headline {
@@ -46,7 +44,7 @@
 
 .btn {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #4472a3;
   color: white;
   border: none;
   cursor: pointer;
@@ -81,5 +79,5 @@
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #597593;
 }
