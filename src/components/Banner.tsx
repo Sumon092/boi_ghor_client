@@ -17,7 +17,7 @@ const Banner = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -107,7 +107,7 @@ const Banner = () => {
                 <p className="paragraph">
                   Explore the world with our curated travel experiences and breathtaking destinations.
                 </p>
-                <Button className="btn">Learn More</Button>
+                <Button className={`btn ${currentIndex === 0 ? 'vertical-to-horizontal' : ''}`}>Learn More</Button>
               </>
             )}
             {index === 1 && (
@@ -117,7 +117,7 @@ const Banner = () => {
                 <p className="paragraph">
                   Embark on a journey to find hidden gems and immerse yourself in new cultures.
                 </p>
-                <Button className="btn">Discover Now</Button>
+                <Button className={`btn ${currentIndex === 1 ? 'vertical-to-horizontal' : ''}`}>Discover Now</Button>
               </>
             )}
             {index === 2 && (
@@ -127,7 +127,7 @@ const Banner = () => {
                 <p className="paragraph">
                   Indulge in thrilling adventures and create memories that last a lifetime.
                 </p>
-                <Button className="btn">Book Your Adventure</Button>
+                <Button className={`btn ${currentIndex === 2 ? 'vertical-to-horizontal' : ''}`}>Learn More</Button>
               </>
             )}
           </div>

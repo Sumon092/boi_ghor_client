@@ -14,7 +14,7 @@
 .overlay:hover {
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
 }
 
 .text-container {
@@ -51,6 +51,33 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.vertical-to-horizontal {
+  animation: rotate-left-to-right 1s linear forwards,
+    zoom-fade 2s ease-in-out 4s forwards;
+  transform-origin: bottom center;
+  opacity: 1;
+}
+
+@keyframes rotate-left-to-right {
+  0% {
+    transform: rotate(-90deg) translateX(0);
+  }
+  100% {
+    transform: rotate(0deg) translateX(-100);
+  }
+}
+
+@keyframes zoom-fade {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0deg) scale(3);
+    opacity: 0;
+  }
 }
 
 .btn:hover {
