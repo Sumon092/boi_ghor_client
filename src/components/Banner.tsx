@@ -2,6 +2,7 @@ import { HiMenu } from "react-icons/hi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import '../styles/Banner.css'
 import { Button } from "./UI/Button";
 import Banner1 from "../assets/images/banner/slider11-834.jpg";
 import Banner2 from "../assets/images/banner/slider12-13.jpg";
@@ -94,11 +95,45 @@ const Banner = () => {
           infiniteLoop
           selectedItem={currentIndex}
         >
-          {images.map((image, index) => (
-            <div key={index}>
-              <img className="w-full" src={image} alt="" />
-            </div>
-          ))}
+           {images.map((image, index) => (
+      <div key={index}>
+        <img className="w-full" src={image} alt="" />
+        <div className="overlay">
+          <div className="text-container">
+            {index === 0 && (
+              <>
+                <h2 className="semi-headline">Discover</h2>
+                <h1 className="headline">Amazing Destinations</h1>
+                <p className="paragraph">
+                  Explore the world with our curated travel experiences and breathtaking destinations.
+                </p>
+                <Button className="btn">Learn More</Button>
+              </>
+            )}
+            {index === 1 && (
+              <>
+                <h2 className="semi-headline">Uncover</h2>
+                <h1 className="headline">Hidden Treasures</h1>
+                <p className="paragraph">
+                  Embark on a journey to find hidden gems and immerse yourself in new cultures.
+                </p>
+                <Button className="btn">Discover Now</Button>
+              </>
+            )}
+            {index === 2 && (
+              <>
+                <h2 className="semi-headline">Experience</h2>
+                <h1 className="headline">Adventurous Escapes</h1>
+                <p className="paragraph">
+                  Indulge in thrilling adventures and create memories that last a lifetime.
+                </p>
+                <Button className="btn">Book Your Adventure</Button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
         </Carousel>
         <Button
           onClick={prevSlide}
