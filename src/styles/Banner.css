@@ -30,13 +30,12 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
-.sh-animation {
+.anim-semi-head {
   animation: enterAndExit 5s ease-in-out forwards;
-  opacity: 0;
+  opacity: 1;
   transform-origin: right center;
-  transform: translateY(100%);
+  transform: translateY(0);
   animation-fill-mode: forwards;
-  animation-delay: 0s;
 }
 
 @keyframes enterAndExit {
@@ -59,15 +58,35 @@
   font-weight: 800;
   margin-bottom: 5px;
 }
+.anim-headline {
+  animation: enterWithScale 5.5s ease-in-out forwards;
+  opacity: 0;
+  transform: scale(3);
+  transform-origin: center;
+  animation-delay: 0.5s; /* Delay after semi-headline animation */
+}
+
+@keyframes enterWithScale {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
 
 .paragraph {
   font-size: 1rem;
   margin-bottom: 15px;
 }
-
-/* animation for paragraph */
 .pg-animation {
-  animation: enterAndZoomOut 3s ease-in-out forwards;
+  animation: enterAndZoomOut 7.5s ease-in-out forwards;
   opacity: 0;
   transform-origin: left center;
   transform: translateX(-100%);
@@ -99,7 +118,7 @@
 
 .vertical-to-horizontal {
   animation: rotate-left-to-right 1s linear forwards,
-    zoom-fade 2s ease-in-out 4s forwards;
+    zoom-fade 2s ease-in-out 5s forwards;
   transform-origin: bottom center;
   opacity: 1;
 }

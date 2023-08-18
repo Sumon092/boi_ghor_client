@@ -45,13 +45,26 @@ const Slider = () => {
               <div className="text-container">
                 {index === 0 && (
                   <>
-                    <h2 className={`semi-headline ${
-                        currentIndex === 0 ? "sh-animation" : ""
-                      }`}>Discover</h2>
-                    <h1 className="headline">Amazing Destinations</h1>
-                    <p className={`paragraph ${
+                    <h2
+                      className={`semi-headline ${
+                        currentIndex === 0 ? "anim-semi-head" : ""
+                      }`}
+                    >
+                      Discover
+                    </h2>
+                    <h1
+                      className={`headline ${
+                        currentIndex === 0 ? "anim-headline" : ""
+                      }`}
+                    >
+                      Amazing Destinations
+                    </h1>
+
+                    <p
+                      className={`paragraph ${
                         currentIndex === 0 ? "pg-animation" : ""
-                      }`}>
+                      }`}
+                    >
                       Explore the world with our curated travel experiences and
                       breathtaking destinations.
                     </p>
@@ -66,13 +79,25 @@ const Slider = () => {
                 )}
                 {index === 1 && (
                   <>
-                    <h2 className={`semi-headline ${
-                        currentIndex === 1 ? "sh-animation" : ""
-                      }`}>Uncover</h2>
-                    <h1 className="headline">Hidden Treasures</h1>
-                    <p className={`paragraph ${
+                    <h2
+                      className={`semi-headline ${
+                        currentIndex === 1 ? "anim-semi-head" : ""
+                      }`}
+                    >
+                      Uncover
+                    </h2>
+                    <h1
+                      className={`headline ${
+                        currentIndex === 1 ? "anim-headline" : ""
+                      }`}
+                    >
+                      Hidden Treasures
+                    </h1>
+                    <p
+                      className={`paragraph ${
                         currentIndex === 1 ? "pg-animation" : ""
-                      }`}>
+                      }`}
+                    >
                       Embark on a journey to find hidden gems and immerse
                       yourself in new cultures.
                     </p>
@@ -87,13 +112,25 @@ const Slider = () => {
                 )}
                 {index === 2 && (
                   <>
-                    <h2 className={`semi-headline ${
-                        currentIndex === 2 ? "sh-animation" : ""
-                      }`}>Experience</h2>
-                    <h1 className="headline">Adventurous Escapes</h1>
-                    <p className={`paragraph ${
-                        currentIndex === 2   ? "pg-animation" : ""
-                      }`}>
+                    <h2
+                      className={`semi-headline ${
+                        currentIndex === 2 ? "anim-semi-head" : ""
+                      }`}
+                    >
+                      Experience
+                    </h2>
+                    <h1
+                      className={`headline ${
+                        currentIndex === 2 ? "anim-headline" : ""
+                      }`}
+                    >
+                      Adventurous Escapes
+                    </h1>
+                    <p
+                      className={`paragraph ${
+                        currentIndex === 2 ? "pg-animation" : ""
+                      }`}
+                    >
                       Indulge in thrilling adventures and create memories that
                       last a lifetime.
                     </p>
