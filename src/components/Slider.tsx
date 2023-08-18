@@ -14,7 +14,7 @@ const Slider = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -69,7 +69,7 @@ const Slider = () => {
                       breathtaking destinations.
                     </p>
                     <Button
-                      className={`btn ${
+                      className={`btn btn-overlay ${
                         currentIndex === 0 ? "vertical-to-horizontal" : ""
                       }`}
                     >

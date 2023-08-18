@@ -9,6 +9,7 @@
   justify-content: center;
   opacity: 1;
   color: white;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .overlay:hover {
@@ -61,9 +62,9 @@
 .anim-headline {
   animation: enterWithScale 5.5s ease-in-out forwards;
   opacity: 0;
-  transform: scale(3);
+  transform: scale(4);
   transform-origin: center;
-  animation-delay: 0.5s; /* Delay after semi-headline animation */
+  animation-delay: 0.5s;
 }
 
 @keyframes enterWithScale {
@@ -114,6 +115,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  animation-play-state: running;
 }
 
 .vertical-to-horizontal {
@@ -145,4 +147,5 @@
 
 .btn:hover {
   background-color: #597593;
+  animation-play-state: paused;
 }
