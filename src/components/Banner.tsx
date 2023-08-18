@@ -8,7 +8,7 @@ const Banner = () => {
       <div className="col-span-1 md:col-span-1 border-gray-200 border p-0">
         <CategoriesList />
       </div>
-      <div className="col-span-3 md:col-span-3  relative bg-blue-400 h-[80vh]">
+      <div className="col-span-3 md:col-span-3  relative h-[80vh]">
         <Slider />
       </div>
     </div>
