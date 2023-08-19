@@ -58,7 +58,7 @@ const Cards = () => {
                 </div>
                 <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3]">
                   <Button>
-                    <TooltipComponent content="Quick View" position="top">
+                    <TooltipComponent content="Add Book" position="top">
                       <FaPlus className="text-xl" />
                     </TooltipComponent>
                   </Button>
