@@ -18,13 +18,11 @@ const Cards = () => {
             <img className="h-full" src={bookImage} alt="" />
           </div>
           <div className="w-full opacity-0 hover:opacity-100 p-5 h-72 flex flex-col justify-center items-center bg-black/60 absolute top-0">
-            <div className="flex justify-center items-center bg-black/30  text-white hover:bg-[#4472a3]">
+            <div className="flex justify-center items-center bg-black/70 text-white hover:bg-[#4472a3]">
               <Button>
                 <FaCartPlus className="text-xl" />
+                <h4 className="text-sm ml-2">ADD TO CART</h4>
               </Button>
-              <div>
-                <h4 className="text-sm mr-3">ADD TO CART</h4>
-              </div>
             </div>
             <div className="bottom-0 absolute flex justify-center mb-5 text-white">
               <TooltipComponent content="Quick View" position="top">
@@ -66,7 +64,10 @@ const Cards = () => {
               <span className="hover:text-[#4472a3]">Genre</span>
               <span>Publication Date</span>
             </div>
-            <span>Book Rating</span>
+            <div className="flex justify-between">
+              <span className="text-xs text-gray-500">Cut Price</span>
+              <span className="font-bold text-[#4472a3]">Price</span>
+            </div>
           </div>
           <div className="flex justify-center items-center border border-dotted border-gray-300 border-t-0 p-3 text-[#4472a3] font-bold">
             <FaClock />
