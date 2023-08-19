@@ -1,11 +1,18 @@
 import bookImage from "../assets/images/bookImages/etiam-auctor.jpg";
-import { FaRegStar, FaCartPlus, FaPlus, FaEye, FaHeart } from "react-icons/fa";
+import {
+  FaRegStar,
+  FaCartPlus,
+  FaPlus,
+  FaEye,
+  FaHeart,
+  FaClock,
+} from "react-icons/fa";
 import { Button } from "./UI/Button";
 import TooltipComponent from "./UI/Tooltip";
 const Cards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-7 mt-5 mb-5">
-      <div className="col-span-1 md:col-span-1 h-[450px]">
+      <div className="col-span-1 md:col-span-1 h-[450px] relative">
         <div className="h-96 relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
           <div className="div1 h-72 border border-dotted border-gray-300  flex justify-center items-center relative">
             <img className="h-full" src={bookImage} alt="" />
@@ -43,11 +50,10 @@ const Cards = () => {
               </TooltipComponent>
             </div>
           </div>
-
-          <div className="p-3 border border-dotted border-gray-300 text-sm text-gray-700 ">
+          <div className="p-3 border border-dotted border-gray-300 text-sm text-gray-700 border-t-0">
             <div className="flex justify-between">
               <span className="hover:text-[#4472a3]">Book Title</span>
-              <span className="flex text-yellow-600">
+              <span className="flex">
                 <FaRegStar className="mr-1" />
                 <FaRegStar className="mr-1" />
                 <FaRegStar className="mr-1" />
@@ -62,8 +68,16 @@ const Cards = () => {
             </div>
             <span>Book Rating</span>
           </div>
+          <div className="flex justify-center items-center border border-dotted border-gray-300 border-t-0 p-3 text-[#4472a3] font-bold">
+            <FaClock />
+            <span className="ml-2 ">365 Days</span>
+          </div>
         </div>
-        <div className="flex justify-center items-center bg-slate-400">div</div>
+        <div className="h-10 w-10 rounded-full bg-[#4472a3] absolute top-6 right-6 flex flex-col justify-center items-center text-white p-2">
+          <hr className="h-1 w-full" />
+          <span className="text-xs"> -10%</span>
+          <hr className="h-1 w-full" />
+        </div>
       </div>
       <div className="col-span-3 md:col-span-3  h-96 ">
         <div className="grid grid-cols-3 gap-7 mb-3">
