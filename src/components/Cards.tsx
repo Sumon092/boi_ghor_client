@@ -28,7 +28,7 @@ const Cards = () => {
       </div>
       <div className="col-span-3 md:col-span-3  h-96 ">
         <div className="grid grid-cols-3 gap-7">
-          <div className="h-96 relative">
+          <div className="h-96 relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
             <div className="div1 h-72 border border-dotted border-gray-300  flex justify-center items-center relative">
               <img className="h-full" src={bookImage} alt="" />
             </div>
@@ -42,27 +42,27 @@ const Cards = () => {
                 </div>
               </div>
               <div className="bottom-0 absolute flex justify-center mb-5 text-white">
-                <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3] relative group">
-                  <Button>
-                    <TooltipComponent content="Quick View" position="top">
+                <TooltipComponent content="Quick View" position="top">
+                  <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3] relative group">
+                    <Button>
                       <FaEye className="text-xl" />
-                    </TooltipComponent>
-                  </Button>
-                </div>
-                <div className="h-7 w-7 border border-white flex justify-center items-center ml-2 mr-2 hover:bg-[#4472a3]">
-                  <Button>
-                    <TooltipComponent content="Add To WishList" position="top">
+                    </Button>
+                  </div>
+                </TooltipComponent>
+                <TooltipComponent content="Add To WishList" position="top">
+                  <div className="h-7 w-7 border border-white flex justify-center items-center ml-2 mr-2 hover:bg-[#4472a3]">
+                    <Button>
                       <FaHeart className="text-xl" />
-                    </TooltipComponent>
-                  </Button>
-                </div>
-                <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3]">
-                  <Button>
-                    <TooltipComponent content="Add Book" position="top">
+                    </Button>
+                  </div>
+                </TooltipComponent>
+                <TooltipComponent content="Add Book" position="top">
+                  <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3]">
+                    <Button>
                       <FaPlus className="text-xl" />
-                    </TooltipComponent>
-                  </Button>
-                </div>
+                    </Button>
+                  </div>
+                </TooltipComponent>
               </div>
             </div>
 

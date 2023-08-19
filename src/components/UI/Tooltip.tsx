@@ -1,5 +1,4 @@
 import * as React from 'react';
-import '../../styles/tooltip.css'
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipArrow } from '@radix-ui/react-tooltip';
 
 interface TooltipComponentProps {
@@ -16,7 +15,7 @@ const TooltipComponent: React.FC<TooltipComponentProps> = ({ content, position =
       <TooltipTrigger>{children}</TooltipTrigger>
       <TooltipContent className={tooltipClass}>
         {content}
-        <TooltipArrow className='mb-2'/>
+        <TooltipArrow />
       </TooltipContent>
     </Tooltip>
   );
