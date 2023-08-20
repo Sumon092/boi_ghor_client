@@ -34,7 +34,6 @@ const Deals = () => {
               </Button>
             </div>
           </div>
-          
         </div>
       </>
     </div>
