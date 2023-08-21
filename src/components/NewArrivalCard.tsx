@@ -24,10 +24,10 @@ const NewArrivalCard = () => {
             </span>
             <div className="flex justify-between">
               <span className="text-red-500 font-semibold text-sm">
-                $ price
+                $ Price
               </span>
-              <span className="text-sm text-gray-600">
-                <del>$ price</del>
+              <span className="text-xs text-gray-600">
+                <del>$ Price</del>
               </span>
             </div>
           </div>
