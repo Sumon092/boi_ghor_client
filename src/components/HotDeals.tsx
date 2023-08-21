@@ -52,7 +52,7 @@ const HotDeals = () => {
           <div className="p-3 border border-dotted border-gray-300 border-t-0 text-sm text-gray-700 h-[96px]">
             <div className="flex justify-between mb-1">
               <span className="hover:text-[#4472a3] font-bold text-md">
-                Book Title
+               Amar Ache Jol
               </span>
               <span className="flex text-orange-600 text-xs cursor-pointer">
                 <FaRegStar className="mr-1" />

@@ -149,3 +149,7 @@
   background-color: #597593;
   animation-play-state: paused;
 }
+
+.detail-button{
+  border-radius: 0px 0px 20px 20px;
+}

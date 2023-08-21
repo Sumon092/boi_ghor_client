@@ -45,6 +45,8 @@ const Deals = () => {
           <BestSeller />
           <BestSeller />
           <BestSeller />
+          <BestSeller />
+          <BestSeller />
         </div>
       </div>
     </div>

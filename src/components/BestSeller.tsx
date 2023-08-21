@@ -7,7 +7,7 @@ const BestSeller = () => {
   return (
     <>
       <div className="relative">
-        <div className="h-96 relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
+        <div className=" relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
           <div className="h-72 border border-dotted border-gray-300  flex justify-center items-center relative">
             <img className="h-full" src={bookImage} alt="" />
           </div>
@@ -43,7 +43,7 @@ const BestSeller = () => {
             </div>
           </div>
 
-          <div className="p-3 border border-dotted border-gray-300 border-t-0 text-sm text-gray-700 h-[96px]">
+          <div className="p-3 border border-dotted border-gray-300 border-t-0 border-b-0 text-sm text-gray-700 max-h-[80px]">
             <div className="flex justify-between mb-1">
               <span className="hover:text-[#4472a3] font-bold text-md">
                 Book Title
@@ -56,12 +56,19 @@ const BestSeller = () => {
                 <FaRegStar className="mr-1" />
               </span>
             </div>
-            <div className="flex justify-between mb-1">
+            <div className="flex justify-between">
               <span className="text-sm hover:text-[#4472a3]">Author</span>
               <span className="text-sm hover:text-[#4472a3]">Genre</span>
               <span>Publication Date</span>
             </div>
-            <span>Book Rating</span>
+            <div className="p-0 mb-0">
+              <span>Book Rating</span>
+            </div>
+          </div>
+          <div className="flex justify-center item-center w-full bg-[#4472a3]/90 p-0 text-white detail-button hover:bg-[#4472a3]">
+            <Button className="w-full border-0 font-bold" variant="outline">
+              SHOW DETAILS
+            </Button>
           </div>
         </div>
         <div className="h-10 w-10 rounded-full bg-black/70 absolute top-6 left-6 flex flex-col justify-center items-center text-white p-2">
