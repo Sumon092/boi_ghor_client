@@ -3,6 +3,7 @@ import HotDeals from "./HotDeals";
 import NewArrival from "./NewArrival";
 import { Button } from "./UI/Button";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import NewArrivalBanner from "./NewArrivalBanner";
 
 const Deals = () => {
   return (
@@ -48,7 +49,9 @@ const Deals = () => {
           <BestSeller />
           <BestSeller />
           <BestSeller />
+          <BestSeller />
         </div>
+        <NewArrivalBanner />
       </div>
     </div>
   );
