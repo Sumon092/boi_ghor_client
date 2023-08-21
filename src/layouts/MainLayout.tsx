@@ -6,7 +6,7 @@ export default function MainLayout() {
   return (
     <>
       <NavBar />
-      <div className="pt-24 pl-10 pr-10 p-2">
+      <div className="pt-24 pl-10 pr-10">
         <SideButton />
         <Outlet />
       </div>

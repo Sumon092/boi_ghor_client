@@ -8,7 +8,7 @@ const BestSeller = () => {
     <>
       <div className="relative">
         <div className=" relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
-          <div className="h-72 border border-dotted border-gray-300  flex justify-center items-center relative">
+          <div className="h-72 border border-dotted border-[#4472a3]  flex justify-center items-center relative">
             <img className="h-full" src={bookImage} alt="" />
           </div>
           <div className="w-full opacity-0 hover:opacity-100 p-5 h-72 flex flex-col justify-center items-center bg-black/60 absolute top-0">
@@ -43,7 +43,7 @@ const BestSeller = () => {
             </div>
           </div>
 
-          <div className="p-3 border border-dotted border-gray-300 border-t-0 border-b-0 text-sm text-gray-700 max-h-[80px]">
+          <div className="p-3 border border-dotted border-[#4472a3] border-t-0 border-b-0 text-sm text-gray-700 max-h-[80px]">
             <div className="flex justify-between mb-1">
               <span className="hover:text-[#4472a3] font-bold text-md">
                 Book Title

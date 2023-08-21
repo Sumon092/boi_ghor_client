@@ -1,5 +1,6 @@
 import BestSeller from "./BestSeller";
 import HotDeals from "./HotDeals";
+import NewArrival from "./NewArrival";
 import { Button } from "./UI/Button";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
@@ -23,6 +24,7 @@ const Deals = () => {
           </div>
         </div>
         <HotDeals />
+        <NewArrival />
       </div>
       <div className="col-span-3 md:col-span-3">
         <div className="flex flex-col mb-5">
@@ -41,7 +43,6 @@ const Deals = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-7">
-          <BestSeller />
           <BestSeller />
           <BestSeller />
           <BestSeller />
