@@ -19,7 +19,12 @@ const NewArrival = () => {
               </Button>
             </div>
           </div> 
-          <NewArrivalCard/>
+          <div className="mt-7 border flex flex-col border-gray-300 border-dotted">
+            <NewArrivalCard/>
+            <NewArrivalCard/>
+            <NewArrivalCard/>
+            <NewArrivalCard/>
+          </div>
         </>
     );
 };
