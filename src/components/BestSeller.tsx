@@ -8,7 +8,7 @@ import { IBook } from "../types/globalTypes";
 const BestSeller = ({ books }: { books: any }) => {
   return (
     <>
-      {books?.book?.map((item: IBook) => {
+      {books?.map((item: IBook) => {
         const { author, genre, publication_date, title, rating } = item;
         return (
           <div key={item._id} className="relative">

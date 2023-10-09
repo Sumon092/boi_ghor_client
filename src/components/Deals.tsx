@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BestSeller from "./BestSeller";
 import HotDeals from "./HotDeals";
 import NewArrival from "./NewArrival";
 import { Button } from "./UI/Button";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import NewArrivalBanner from "./NewArrivalBanner";
-import { useGetBooksQuery } from "../redux/features/books/bookApi";
 
 
-const Deals = () => {
-  const { data} = useGetBooksQuery(undefined);
+
+const Deals = ({searchFilter:data}:{searchFilter:any}) => {
+  // const { data} = useGetBooksQuery(undefined);
+  console.log(data);
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-7 mt-5">
       <div className="col-span-1 md:col-span-1 ">
