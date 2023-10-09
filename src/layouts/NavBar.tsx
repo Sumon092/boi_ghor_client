@@ -38,7 +38,14 @@ const NavBar = () => {
               </li>
               
               <li className="ml-5">
-                <Button className="btn-primary">Login</Button>
+                <Button variant="link" className="btn-primary" asChild>
+                  <Link to="/login">Login</Link>
+                  </Button>
+              </li>
+              <li className="ml-5">
+                <Button variant="link" className="btn-primary" asChild>
+                  <Link to="/signup">Signup</Link>
+                  </Button>
               </li>
             </ul>
           </div>

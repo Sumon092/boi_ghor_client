@@ -1,6 +1,7 @@
 import Banner from "../components/Banner";
 import Deals from "../components/Deals";
-import SearchBar from "../components/searchBar";
+import SearchBar from "../components/SearchBar";
+
 
 
 const Home = () => {
