@@ -11,7 +11,7 @@ const BestSeller = ({ books }: { books: any }) => {
       {books?.book?.map((item: IBook) => {
         const { author, genre, publication_date, title, rating } = item;
         return (
-          <div className="relative">
+          <div key={item._id} className="relative">
             <div className=" relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
               <div className="h-72 border border-dotted border-[#4472a3]  flex justify-center items-center relative">
                 <img className="h-full" src={bookImage} alt="" />
@@ -64,7 +64,11 @@ const BestSeller = ({ books }: { books: any }) => {
                 <p className="text-sm hover:text-[#4472a3]">{author}</p>
                 <div className="flex justify-between">
                   <span className="text-sm hover:text-[#4472a3]">{genre}</span>
-                  <span>{publication_date}</span>
+                  <span>
+                    {publication_date
+                      ? new Date(publication_date).getFullYear()
+                      : "Unknown"}
+                  </span>
                 </div>
                 <div className="p-0 mb-0">
                   <span>{rating}</span>
