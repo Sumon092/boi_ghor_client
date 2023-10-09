@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "./UI/Select";
 import Banner from "./Banner";
 import Deals from "./Deals";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 interface Option {
   value: string;
@@ -14,7 +15,8 @@ interface Option {
 }
 
 const SearchBar = () => {
-  const { data } = useGetBooksQuery(undefined);
+  const {auth}=useAuth()
+  const { data ,isLoading} = useGetBooksQuery(undefined);
   const [selectedGenre, setSelectedGenre] = useState("All Books");
   const [selectedYear, setSelectedYear] = useState("All Years");
   const [searchText, setSearchText] = useState("");
@@ -73,7 +75,8 @@ const SearchBar = () => {
     searchText !== "";
   return (
     <>
-      <div className="grid grid-cols-3 mb-8">
+    {isLoading?<p className="text-center">Loading...</p>:<>
+    <div className="grid grid-cols-3 mb-8">
         <div className="col-span-1"></div>
         <div className="col-span-1">
           <div className="flex">
@@ -118,7 +121,8 @@ const SearchBar = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-1">
+        {
+          auth &&<div className="col-span-1">
           <div className="flex justify-center item-center w-1/2 bg-[#4472a3]/90 p-0 text-white hover:bg-[#4472a3] ml-24">
             <Button
               className="w-full border-0 font-bold mr-0"
@@ -128,9 +132,13 @@ const SearchBar = () => {
             </Button>
           </div>
         </div>
+        }
+        
       </div>
       {!isFilterActive && <Banner />}
       <Deals searchFilter={filteredBooks} />
+    </>}
+      
     </>
   );
 };

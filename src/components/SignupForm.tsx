@@ -3,8 +3,8 @@ import { cn } from "../lib/utility";
 import { Input } from "./UI/Input";
 import { Button } from "./UI/Button";
 import { useSignupMutation } from "../redux/features/user/userApi";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,23 +1,23 @@
-import {  useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Input } from "../components/UI/Input";
 import useAuth from "../hooks/useAuth";
-import { useForm ,SubmitHandler} from "react-hook-form";
-
-
+import { useForm, SubmitHandler } from "react-hook-form";
 import {
+  useGetBooksQuery,
   useSingleBookQuery,
   useUpdateBookMutation,
 } from "../redux/features/books/bookApi";
-import { useEffect,  } from "react";
+import { useEffect } from "react";
 import { IBook } from "../types/globalTypes";
-import NavBar from "../layouts/NavBar";
-import { toast } from "../components/UI/use-toast";
-import { Toaster } from "../components/UI/Toaster";
+import toast from "react-hot-toast";
+
 const UpdateBook = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { token } = useAuth();
+  const { token ,auth} = useAuth();
   const { data: bookData, isLoading } = useSingleBookQuery(id);
   const [updateBook] = useUpdateBookMutation();
+  const { refetch } = useGetBooksQuery(undefined);
   const existingBook = bookData?.book;
   const publicationDate = existingBook?.publication_date?.split("T")[0];
   const {
@@ -27,25 +27,25 @@ const UpdateBook = () => {
     formState: { errors },
   } = useForm<IBook>();
 
-  const onSubmit : SubmitHandler<IBook> = async (formData) => {
+  const onSubmit: SubmitHandler<IBook> = async (formData) => {
     try {
+      if(!auth){
+        navigate('/login')
+      }
       const res = await updateBook({
         data: formData,
         token,
         id,
       }).unwrap();
-      console.log(res.status);
       if (res?.status === 200) {
-        toast({
-          description: "Update successful",
-        });
+        toast.success("Update successful");
+        refetch();
+        navigate("/");
       }
-      if(res?.status === 401){
-        toast({
-          description: "You are not authenticated to update this",
-        });
+
+      if (res?.status === 401) {
+        toast.error("You are not authenticated to update this");
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -65,14 +65,12 @@ const UpdateBook = () => {
     return <div>Loading...</div>;
   }
 
-  
   return (
     <>
-      <NavBar />
-      <Toaster />{" "}
-      <div className="border-2 border-[#5c6baf]">
-        <div className="w-1/3 min-h-screen mx-auto">
-          <div className="lg:mt-24 pb-16">
+      {" "}
+      <div className="border-2 w-1/3 border-[#5c6baf] mx-auto rounded-lg h-[60vh] mb-8 p-4">
+        <div className="w-full mx-auto">
+          <div className="">
             <h1 className="text-2xl text-center my-5 font-bold text-gray-500">
               <span>UPDATE BOOK</span>
             </h1>

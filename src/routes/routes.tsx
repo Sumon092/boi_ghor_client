@@ -16,7 +16,19 @@ const routes=createBrowserRouter([
         {
             index:true,
             element:<Home/>
-        }
+        },
+        {
+          path: '/add-book',
+          element: <AddBook />,
+        },
+        {
+          path: '/book-detail/:id',
+          element: <BookDetails />,
+        },
+        {
+          path: '/update-book/:id',
+          element: <UpdateBook />,
+        },
     ]
 },
 {
@@ -27,18 +39,7 @@ const routes=createBrowserRouter([
     path: '/signup',
     element: <Signup />,
   },
-  {
-    path: '/add-book',
-    element: <AddBook />,
-  },
-  {
-    path: '/book-detail/:id',
-    element: <BookDetails />,
-  },
-  {
-    path: '/update-book/:id',
-    element: <UpdateBook />,
-  },
+  
   {
     path: '*',
     element: <NotFound />,

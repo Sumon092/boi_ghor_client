@@ -1,21 +1,27 @@
-import { Link, useParams } from 'react-router-dom';
-import { useDeleteBookMutation, useSingleBookQuery } from '../redux/features/books/bookApi';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDeleteBookMutation, useGetBooksQuery, useSingleBookQuery } from '../redux/features/books/bookApi';
 import BookReview from '../components/BookReview';
 import BookImage from '../assets/images/book.png'
 import { Button } from '../components/UI/Button';
-import NavBar from '../layouts/NavBar';
 import { useState } from 'react';
 import DeleteConfirmationModal from '../components/DeleteModal';
+
+
 import useAuth from '../hooks/useAuth';
-import { toast } from '../components/UI/use-toast';
-import { Toaster } from '../components/UI/Toaster';
+import toast from 'react-hot-toast';
+
 
 export default function BookDetails() {
-  const { id } = useParams();
-  const {token:authToken}=useAuth()
+  const navigate=useNavigate()
+  
+
+const { id } = useParams() || { id: null }; 
+const [bookIdToDelete, setBookIdToDelete] = useState<string | null>(id ?? null);
+  const {token:authToken,auth}=useAuth()
   const [ deleteBook] = useDeleteBookMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: items, isLoading, error } = useSingleBookQuery(id);
+  const {refetch } = useGetBooksQuery(undefined);
   const book=items?.book;
   const publicationDate=items?.book?.publication_date?.split('T')[0]
   if (isLoading) {
@@ -28,26 +34,35 @@ export default function BookDetails() {
   
 
   const handleDeleteClick = () => {
+    if(!auth){
+      navigate('/login')
+    }
+    
+    setBookIdToDelete(id!)
     setIsModalOpen(true);
+    console.log(id,'click id');
   };
 
 const handleConfirmDelete = () => {
-  const id = book?._id; 
+  const id = bookIdToDelete; 
   const token=authToken;
+  
 
   if (deleteBook) {
     deleteBook({ token, id }).unwrap()
       .then((res) => {
-        console.log(res);
+        console.log(res,'deleted id');
         if (res?.status === 200) {
-          toast({
-            description: "Book Deleted Successful",
-          });
+          toast.success(
+          "Book Deleted Successful",
+          );
         }
+        refetch()
+        navigate('/')
         if (res?.status === 403) {
-          toast({
-            description: "You Are Not Authenticated to Delete this book",
-          });
+          toast.error(
+             "You Are Not Authenticated to Delete this book",
+          );
         }
       })
       .catch((error) => {
@@ -59,11 +74,12 @@ const handleConfirmDelete = () => {
   } else {
     console.error('deleteBook is not a function or is undefined');
   }
+  
 };
   return (
     <>
-    <Toaster/>
-    <NavBar/>
+    
+    
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300 h-[80vh]">
         <div className="w-[50%]">
           <img className='w-full h-full' src={BookImage} alt="" />

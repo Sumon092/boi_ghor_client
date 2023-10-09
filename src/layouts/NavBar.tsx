@@ -13,7 +13,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg shadow-md z-10">

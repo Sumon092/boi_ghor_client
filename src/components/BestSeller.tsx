@@ -17,7 +17,6 @@ const BestSeller = ({ books }: { books: any }) => {
     <>
       {lastAddedBooks?.map((item: IBook) => {
         const {_id, author, genre, publication_date, title, rating } = item;
-        console.log(_id);
         return (
           <div key={item._id} className="relative">
             <div className=" relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">

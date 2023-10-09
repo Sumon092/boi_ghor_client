@@ -45,11 +45,15 @@ const bookApi = api.injectEndpoints({
 
     addReview: builder.mutation({
       query: ({ id, data }) => ({
-        url: `books/add-review/${id}`,
+        url: `/books/add-review/${id}`,
         method: "POST",
         body: data,
       }),
       invalidatesTags: ["reviews"],
+    }),
+    getReview: builder.query({
+      query: (id) => `/books/get-review/${id}`,
+      providesTags: ["reviews"],
     }),
   }),
 });
@@ -61,4 +65,5 @@ export const {
   useUpdateBookMutation,
   useDeleteBookMutation,
   useAddReviewMutation,
+  useGetReviewQuery,
 } = bookApi;

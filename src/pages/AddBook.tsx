@@ -2,18 +2,17 @@
 import { SubmitHandler} from 'react-hook-form';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAddBookMutation } from "../redux/features/books/bookApi";
+import { useAddBookMutation, useGetBooksQuery } from "../redux/features/books/bookApi";
 import useAuth from "../hooks/useAuth";
 import { Input } from "../components/UI/Input";
-import NavBar from "../layouts/NavBar";
 import { IBook } from "../types/globalTypes";
-import { toast } from '../components/UI/use-toast';
-import { Toaster } from '../components/UI/Toaster';
+import toast from 'react-hot-toast';
 
 
 export default function AddNewBook() {
-
+  const {auth}=useAuth()
   const [addBook] = useAddBookMutation();
+  const {refetch } = useGetBooksQuery(undefined);
   const navigate = useNavigate();
   const { token } = useAuth();
   const {
@@ -23,15 +22,21 @@ export default function AddNewBook() {
     formState: { errors },
   } = useForm<IBook>();
   const onSubmit: SubmitHandler<IBook> = (data) => {
+    if(!auth){
+      navigate('/login')
+    }
     addBook({ data, token })
       .unwrap()
       .then((res) => {
         if (res?.status === 200) {
+          toast.success(
+            "Book Added successful"
+          )
           reset();
+          refetch()
           navigate("/");
-          toast({
-            description: "Book Added successful",
-          });
+        }else{
+          toast.error("Something went wrong")
         }
       })
       .catch((error) => {
@@ -41,11 +46,9 @@ export default function AddNewBook() {
   
   return (
     <>
-    <Toaster/>
-      <NavBar />
-      <div className="border-2 border-[#5c6baf]">
-        <div className="w-1/3 min-h-screen mx-auto">
-          <div className="lg:mt-24 pb-16">
+      <div className="border-2 w-1/3 border-[#5c6baf] mx-auto rounded-lg  p-4">
+        <div className="w-full mx-auto">
+          <div className="">
             <h1 className="text-2xl text-center my-5 font-bold text-gray-500">
               <span>ADD NEW BOOK</span>
             </h1>
