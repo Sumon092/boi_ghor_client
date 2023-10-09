@@ -2,7 +2,7 @@ export interface IBook {
   _id?: string;
   title?: string;
   author?: string;
-  publication_date?: string | number ;
+  publication_date?: string  ;
   rating?: string;
   reviews?: string;
   genre?: string;
