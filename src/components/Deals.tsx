@@ -4,8 +4,11 @@ import NewArrival from "./NewArrival";
 import { Button } from "./UI/Button";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import NewArrivalBanner from "./NewArrivalBanner";
+import { useGetBooksQuery } from "../redux/features/books/bookApi";
+
 
 const Deals = () => {
+  const { data} = useGetBooksQuery(undefined);
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-7 mt-5">
       <div className="col-span-1 md:col-span-1 ">
@@ -44,12 +47,7 @@ const Deals = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-7">
-          <BestSeller />
-          <BestSeller />
-          <BestSeller />
-          <BestSeller />
-          <BestSeller />
-          <BestSeller />
+          <BestSeller books={data}/>
         </div>
         <NewArrivalBanner />
         <div className="bg-gray-300 p-3 font-bold flex justify-between items-center mt-7">
