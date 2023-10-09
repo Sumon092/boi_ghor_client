@@ -66,6 +66,10 @@ const SearchBar = () => {
         {option.label}
       </SelectItem>
     ));
+  const isFilterActive =
+    selectedGenre !== "All Books" ||
+    selectedYear !== "All Years" ||
+    searchText !== "";
   return (
     <>
       <div className="grid grid-cols-3 mb-8">
@@ -124,7 +128,7 @@ const SearchBar = () => {
           </div>
         </div>
       </div>
-      <Banner />
+      {!isFilterActive && <Banner />}
       <Deals searchFilter={filteredBooks} />
     </>
   );
