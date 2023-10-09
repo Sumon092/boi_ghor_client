@@ -29,7 +29,7 @@ const Deals = () => {
       </div>
       <div className="col-span-3 md:col-span-3">
         <div className="flex flex-col mb-5">
-          <div className="bg-gray-300 p-3 font-bold flex justify-between items-center">
+          <div className="bg-gray-300 p-3 font-bold flex justify-between items-center"> 
             <div className="hover:text-[#4472a3] cursor-pointer">
               <h2>BEST SELLER</h2>
             </div>
