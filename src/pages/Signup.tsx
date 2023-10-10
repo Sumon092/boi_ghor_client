@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '../lib/utility';
 import { buttonVariants } from '../components/UI/Button';
 import { SignupForm } from '../components/SignupForm';
+import SignUpImage from '../assets/images/signup.png';
 
 export default function Signup() {
   return (
@@ -11,7 +12,7 @@ export default function Signup() {
         <Link
           to="/login"
           className={cn(
-            buttonVariants({ variant: 'ghost', size: 'sm' }),
+            buttonVariants({ variant: 'ghost', size: 'lg' }),
             'absolute right-4 top-4 md:right-8 md:top-8'
           )}
         >
@@ -20,11 +21,8 @@ export default function Signup() {
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div
             className="absolute inset-0 bg-cover"
-            style={{
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1590069261209-f8e9b8642343?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80)',
-            }}
-          />
+            
+          ><img src={SignUpImage} alt="" /></div>
           <div className="relative z-20 flex items-center text-lg font-medium">
             <img className="h-8" src={"logo"} alt="" />
           </div>
@@ -42,7 +40,7 @@ export default function Signup() {
                 Enter your email below to create your account
               </p>
             </div>
-            <SignupForm />
+            <SignupForm className={''}/>
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{' '}
               <Link

@@ -11,8 +11,10 @@ const NavBar = () => {
       <div className="h-full w-full bg-white/5">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto p-8">
           <div className="flex justify-between font-bold items-center">
+            <Link to="/">
             <div className="mr-5"><img className="h-8" src={logo} alt="log" /></div>
             <div><p>Booi Ghor</p></div>
+            </Link>
           </div>
           <div>
             <ul className="flex items-center">

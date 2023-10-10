@@ -1,34 +1,55 @@
-'use client';
-
+/* eslint-disable no-unsafe-optional-chaining */
 import * as React from 'react';
 import { Input } from '../components/UI/Input';
 import { Button } from '../components/UI/Button';
 import { cn } from '../lib/utility';
-
+import { useLoginMutation } from '../redux/features/user/userApi';
+import { useAppDispatch } from '../redux/hook';
+import { loginFailure, loginSuccess } from '../redux/features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [login] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const navigate=useNavigate()
 
-  async function onSubmit(event: React.SyntheticEvent) {
+  const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await login({ data: { email, password } });
+      
+      if ('data' in response) {
+        const { token } = response?.data?.token;
+        localStorage.setItem('token', token);
+        dispatch(loginSuccess(response.data));
+        toast.success('Login Successful!');
+        navigate('/')
+      } else {
+        toast.error('Login failed')
+        throw new Error('Login failed');
+      }
+    } catch (error) {
+      toast.error('login failed')
+      dispatch(loginFailure());
+    } finally {
       setIsLoading(false);
-    }, 3000);
-  }
-
+    }
+  };
+  
   return (
     <div className={cn('grid gap-6', className)} {...props}>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            {/* <Label className="sr-only" htmlFor="email">
-              Email
-            </Label> */}
             <Input
               id="email"
               placeholder="name@example.com"
@@ -37,6 +58,8 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               id="password"
@@ -45,27 +68,17 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="password"
               disabled={isLoading}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && <p>loading</p>}
-            Login with Email
+          <Button className='bg-blue-400 text-white font-bold' disabled={isLoading}>
+            {isLoading && <p>Loading</p>}
+            Login
           </Button>
         </div>
       </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? <p>loading</p> : <p>GitHub</p>}
-      </Button>
     </div>
   );
 }
+

@@ -6,7 +6,10 @@ const bookApi = api.injectEndpoints({
       query: ({ data }) => ({
         url: `/books/add-book`,
         method: "POST",
-        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       }),
     }),
     getBooks: builder.query({

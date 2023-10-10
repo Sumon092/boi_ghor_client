@@ -1,33 +1,49 @@
-'use client';
+import { useState } from "react";
+import { cn } from "../lib/utility";
+import { Input } from "./UI/Input";
+import { Button } from "./UI/Button";
+import { useSignupMutation } from "../redux/features/user/userApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-import * as React from 'react';
-import { cn } from '../lib/utility';
-import { Input } from './UI/Input';
-import { Button } from './UI/Button';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function SignupForm({ className, ...props }: { className: any }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [signup] = useSignupMutation();
+  const navigate = useNavigate();
 
-type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
-
-export function SignupForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  async function onSubmit(event: React.SyntheticEvent) {
+  const onSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      if (password !== confirmPassword) {
+        toast.error("password does not match");
+        return;
+      }
+
+      await signup({ data: { email, password } });
+      toast.success("Signup successful");
+      navigate("/login");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      console.error("Signup failed:", error);
+    } finally {
       setIsLoading(false);
-    }, 3000);
-  }
+    }
+  };
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
+    <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            {/* <Label className="sr-only" htmlFor="email">
-              Email
-            </Label> */}
             <Input
               id="email"
               placeholder="name@example.com"
@@ -36,43 +52,41 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               id="password"
               placeholder="your password"
               type="password"
               autoCapitalize="none"
+              autoComplete="off"
               autoCorrect="off"
               disabled={isLoading}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Input
-              id="password"
+              id="confirmPassword"
               placeholder="confirm password"
               type="password"
               autoCapitalize="none"
+              autoComplete="off"
               autoCorrect="off"
               disabled={isLoading}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && <p>loading</p>}
-            Create Account
+          <Button
+            className="bg-blue-400 font-bold text-white"
+            disabled={isLoading}
+          >
+            {isLoading && <p>Loading</p>}
+            CREATE ACCOUNT
           </Button>
         </div>
       </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? <p>loading</p> : <p>GitHub</p>}
-      </Button>
     </div>
   );
 }

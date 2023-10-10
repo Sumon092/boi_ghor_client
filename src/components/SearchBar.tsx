@@ -6,6 +6,7 @@ import { Input } from "./UI/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "./UI/Select";
 import Banner from "./Banner";
 import Deals from "./Deals";
+import { Link } from "react-router-dom";
 
 interface Option {
   value: string;
@@ -109,7 +110,7 @@ const SearchBar = () => {
               </Select>
             </div>
             <div className="w-3/5">
-              <Input
+              <Input className="rounded-l-none"
                 placeholder="Search Book Here"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
@@ -123,7 +124,7 @@ const SearchBar = () => {
               className="w-full border-0 font-bold mr-0"
               variant="outline"
             >
-              ADD BOOK
+              <Link to="/add-book">Add Book</Link>
             </Button>
           </div>
         </div>
