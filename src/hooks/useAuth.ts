@@ -38,66 +38,9 @@ const useAuth = () => {
     fetchUser();
   }, [token]);
 
-  return { auth, user };
+  return { auth, user,token };
 };
 
 export default useAuth;
 
-// import { useState, useEffect } from "react";
-// import { useGetAuthUserQuery } from "path/to/your/apiSlice"; // Adjust the import path
 
-// const getTokenFromLocalStorage = () => {
-//   const token = localStorage.getItem("accessToken");
-//   return token;
-// };
-
-// const useAuth = () => {
-//   const [auth, setAuth] = useState(false);
-//   const [user, setUser] = useState({});
-//   const { data: userData, isError, isLoading } = useGetAuthUserQuery();
-
-//   // Fetch the token from local storage
-//   const token = getTokenFromLocalStorage();
-
-//   useEffect(() => {
-//     if (userData) {
-//       setAuth(true);
-//       setUser(userData);
-//     } else {
-//       setAuth(false);
-//     }
-//   }, [userData]);
-
-//   return { auth, user, isLoading, isError, token };
-// };
-
-// export default useAuth;
-// import { useState, useEffect } from "react";
-// import { useGetAuthUserQuery } from "path/to/your/apiSlice"; // Adjust the import path
-
-// const getTokenFromLocalStorage = () => {
-//   const token = localStorage.getItem("accessToken");
-//   return token;
-// };
-
-// const useAuth = () => {
-//   const [auth, setAuth] = useState(false);
-//   const [user, setUser] = useState({});
-//   const { data: userData, isError, isLoading } = useGetAuthUserQuery();
-
-//   // Fetch the token from local storage
-//   const token = getTokenFromLocalStorage();
-
-//   useEffect(() => {
-//     if (userData) {
-//       setAuth(true);
-//       setUser(userData);
-//     } else {
-//       setAuth(false);
-//     }
-//   }, [userData]);
-
-//   return { auth, user, isLoading, isError, token };
-// };
-
-// export default useAuth;
