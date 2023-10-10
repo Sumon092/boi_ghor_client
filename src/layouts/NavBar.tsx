@@ -1,11 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Button } from "../components/UI/Button";
 import logo from '../assets/logo.png'
 import { HiBookOpen ,HiHeart} from "react-icons/hi";
-
-
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { logout } from "../redux/features/user/userSlice";
 
 const NavBar = () => {
+  const { currentUser } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch(); 
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem('token');
+    window.location.href = "/login";
+  };
     return (
         <nav className="w-full h-16 fixed top backdrop-blur-lg shadow-md z-10">
       <div className="h-full w-full bg-white/5">
@@ -38,17 +46,22 @@ const NavBar = () => {
                   <HiHeart size="25" />
                 </Button>
               </li>
-              
-              <li className="ml-5">
+              {
+                currentUser? <li className="ml-5">
+                <Button
+                  variant="link"
+                  className="btn-primary"
+                  asChild
+                  onClick={handleLogout}
+                >
+                  <Link to="/">Logout</Link>
+                </Button>
+              </li>: <li className="ml-5">
                 <Button variant="link" className="btn-primary" asChild>
                   <Link to="/login">Login</Link>
                   </Button>
               </li>
-              <li className="ml-5">
-                <Button variant="link" className="btn-primary" asChild>
-                  <Link to="/signup">Signup</Link>
-                  </Button>
-              </li>
+              }
             </ul>
           </div>
         </div>

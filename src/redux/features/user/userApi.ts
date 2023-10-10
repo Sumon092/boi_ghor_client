@@ -23,7 +23,7 @@ const userApi = api.injectEndpoints({
       }),
     }),
     getAuthUser: builder.query({
-      query: (id) => `/users/${id}`,
+      query: () => `/users/user`,
     }),
   }),
 });

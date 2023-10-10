@@ -6,9 +6,15 @@ import bookImage from "../assets/images/bookImages/the-book-of-love.jpg";
 import { IBook } from "../types/globalTypes";
 
 const BestSeller = ({ books }: { books: any }) => {
+  if (!books) {
+    return null;
+  }
+  const lastAddedBooks = books
+    .sort((a: { addedAt: number; }, b: { addedAt: number; }) => (a.addedAt < b.addedAt ? 1 : -1))
+    .slice(0, 10);
   return (
     <>
-      {books?.map((item: IBook) => {
+      {lastAddedBooks?.map((item: IBook) => {
         const { author, genre, publication_date, title, rating } = item;
         return (
           <div key={item._id} className="relative">

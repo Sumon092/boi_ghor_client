@@ -9,8 +9,6 @@ import NewArrivalBanner from "./NewArrivalBanner";
 
 
 const Deals = ({searchFilter:data}:{searchFilter:any}) => {
-  // const { data} = useGetBooksQuery(undefined);
-  console.log(data);
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-7 mt-5">
       <div className="col-span-1 md:col-span-1 ">
