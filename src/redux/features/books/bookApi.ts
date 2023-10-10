@@ -3,11 +3,12 @@ import { api } from "../../api/apiSlice";
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
     addBook: builder.mutation({
-      query: ({ data }) => ({
+      query: ({ data, token }) => ({
         url: `/books/add-book`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       }),

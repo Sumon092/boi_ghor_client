@@ -1,33 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-// import contact from '../../assets/add-books.png';
-'use client';
 import { toast } from 'react-hot-toast';
 
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAddBookMutation } from '../redux/features/books/bookApi';
+import useAuth from '../hooks/useAuth';
+import { IBook } from '../types/globalTypes';
 
 export default function AddNewBook() {
   const [addBook] = useAddBookMutation();
   const navigate = useNavigate();
+  const {user}=useAuth();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
-    addBook(data).then((res: any) => {
-      console.log(res);
-      if (res.data.statusCode === 200) {
+  const onSubmit = (data: IBook) => {
+    const token = user?.token;
+  
+    addBook({ data, token }).then((res) => {
+      if (res?.data?.statusCode === 200) {
         reset();
-        navigate("/");
-        toast(res.data.message);
+        navigate('/');
+        toast(res.data?.message);
       }
     });
-  };
+  };  
   return (
     <div className="grid bg-slate-100 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 min-h-screen">
       <div className="lg:mt-24 pb-16">
