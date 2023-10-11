@@ -101,8 +101,8 @@ export default function BookReview({ id }: IProps) {
     event.preventDefault();
 
     try {
-      const res = await addReview({ id, data: { review: inputValue } });
-      console.log(res);
+      await addReview({ id, data: { review: inputValue } });
+      
       setInputValue("");
     } catch (error) {
       console.error("Error adding review:", error);

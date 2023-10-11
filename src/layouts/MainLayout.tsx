@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideButton from "../components/SideButton";
+import Footer from "../components/Footer";
 
 export default function MainLayout() {
   return (
@@ -10,6 +11,7 @@ export default function MainLayout() {
         <SideButton />
         <Outlet />
       </div>
+      <Footer/>
     </>
   );
 }
