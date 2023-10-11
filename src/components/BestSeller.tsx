@@ -4,6 +4,7 @@ import { Button } from "./UI/Button";
 import TooltipComponent from "./UI/Tooltip";
 import bookImage from "../assets/images/bookImages/the-book-of-love.jpg";
 import { IBook } from "../types/globalTypes";
+import { Link } from "react-router-dom";
 
 const BestSeller = ({ books }: { books: any }) => {
   if (!books) {
@@ -15,7 +16,8 @@ const BestSeller = ({ books }: { books: any }) => {
   return (
     <>
       {lastAddedBooks?.map((item: IBook) => {
-        const { author, genre, publication_date, title, rating } = item;
+        const {_id, author, genre, publication_date, title, rating } = item;
+        console.log(_id);
         return (
           <div key={item._id} className="relative">
             <div className=" relative transition-all duration-300 ease-in-out transform hover:opacity-90 hover:scale-105">
@@ -82,7 +84,7 @@ const BestSeller = ({ books }: { books: any }) => {
               </div>
               <div className="flex justify-center item-center w-full bg-[#4472a3]/90 p-0 text-white detail-button hover:bg-[#4472a3]">
                 <Button className="w-full border-0 font-bold" variant="outline">
-                  SHOW DETAILS
+                  <Link to={`/book-detail/${_id}`}>SHOW DETAILS</Link>
                 </Button>
               </div>
             </div>
