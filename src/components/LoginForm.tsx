@@ -7,7 +7,8 @@ import { useLoginMutation } from '../redux/features/user/userApi';
 import { useAppDispatch } from '../redux/hook';
 import { loginFailure, loginSuccess } from '../redux/features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { toast } from './UI/use-toast';
+
 
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
@@ -31,15 +32,21 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
         const { token } = response?.data?.token;
         localStorage.setItem('token', token);
         dispatch(loginSuccess(response.data));
-        toast.success('Login Successful!');
+     toast({
+          description: 'Login Successful',
+        });
         navigate('/')
       } else {
-        toast.error('Login failed')
+        toast({
+          description: 'Login Failed',
+        }); 
         throw new Error('Login failed');
       }
     } catch (error) {
-      toast.error('login failed')
       dispatch(loginFailure());
+      toast({
+        description: 'Login Failed',
+      }); 
     } finally {
       setIsLoading(false);
     }

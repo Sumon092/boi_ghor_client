@@ -1,7 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSingleBookQuery } from '../redux/features/books/bookApi';
 import BookReview from '../components/BookReview';
 import BookImage from '../assets/images/book.png'
+import { Button } from '../components/UI/Button';
+import NavBar from '../layouts/NavBar';
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -18,6 +20,7 @@ export default function BookDetails() {
   }
   return (
     <>
+    <NavBar/>
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300 h-[80vh]">
         <div className="w-[50%]">
           <img className='w-full h-full' src={BookImage} alt="" />
@@ -32,6 +35,9 @@ export default function BookDetails() {
               <li key={feature}>{feature}</li>
             ))}
           </ul>
+          <Link to={`/update-book/${book?._id}`} > <Button className='bg-green-500 text-white font-bold'>UPDATE BOOK</Button></Link>
+         
+          <Button className='bg-red-500 text-white font-bold ml-5'>DELETE BOOK</Button>
         </div>
       </div>
       <BookReview id={id!}/>

@@ -22,10 +22,14 @@ const bookApi = api.injectEndpoints({
       }),
     }),
     updateBook: builder.mutation({
-      query: ({ id, data }) => ({
+      query: ({ data, token,id }) => ({
         url: `/books/${id}`,
         method: "PATCH",
-        body: data,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
       }),
     }),
     deleteBook: builder.mutation({
