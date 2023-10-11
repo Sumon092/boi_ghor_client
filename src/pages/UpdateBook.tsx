@@ -38,9 +38,12 @@ const UpdateBook = () => {
           description: "Update successful",
         });
       }
-      toast({
-        description: "You are not authenticated to update this",
-      });
+      if(res?.data?.status === 401){
+        toast({
+          description: "You are not authenticated to update this",
+        });
+      }
+      
     } catch (error) {
       console.log(error);
     }
