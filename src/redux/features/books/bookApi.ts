@@ -33,7 +33,7 @@ const bookApi = api.injectEndpoints({
       }),
     }),
     deleteBook: builder.mutation({
-      query: ({token,id }) => ({
+      query: ({ token, id }) => ({
         url: `/books/${id}`,
         method: "DELETE",
         headers: {
@@ -43,21 +43,11 @@ const bookApi = api.injectEndpoints({
       }),
     }),
 
-    // deleteBook: builder.mutation({
-    //   query: (id) => ({
-    //     url: `/books/${id}`,
-    //     method: "DELETE",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }),
-    // }),
-
     addReview: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/review/${id}`,
+      query: ({ id, review }) => ({
+        url: `/add-review/${id}`,
         method: "POST",
-        body: data,
+        body: review,
       }),
       invalidatesTags: ["reviews"],
     }),

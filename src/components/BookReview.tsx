@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { FiSend } from 'react-icons/fi';
-import { useAddReviewMutation, useGetReviewsQuery } from '../redux/features/books/bookApi';
+import { useAddReviewMutation, useSingleBookQuery } from '../redux/features/books/bookApi';
 import { Button } from './UI/Button';
 import { Textarea } from './UI/TextArea';
 import { Avatar, AvatarFallback, AvatarImage } from './UI/Avatar';
@@ -14,13 +14,14 @@ interface IProps {
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const { data } = useGetReviewsQuery(id, {
+  const { data } = useSingleBookQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 30000,
   });
+  console.log(data.book.reviews);
   const [addReview, { isLoading, isError, isSuccess }] =
   useAddReviewMutation();
-
+console.log(addReview);
   console.log(isLoading);
   console.log(isError);
   console.log(isSuccess);
@@ -31,7 +32,7 @@ export default function BookReview({ id }: IProps) {
 
     const options = {
       id: id,
-      data: { comment: inputValue },
+      data: { review: inputValue },
     };
 
     addReview(options);
@@ -58,7 +59,7 @@ export default function BookReview({ id }: IProps) {
         </Button>
       </form>
       <div className="mt-10">
-        {data?.comments?.map((comment: string, index: number) => (
+        {data?.book?.reviews?.map((comment: string, index: number) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
