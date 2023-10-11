@@ -1,18 +1,66 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FaCartPlus, FaEye, FaHeart, FaPlus, FaRegStar } from "react-icons/fa";
+import { FaBookOpen, FaCartPlus,FaEye,FaHeart, FaRegStar } from "react-icons/fa";
 import { Button } from "./UI/Button";
 import TooltipComponent from "./UI/Tooltip";
 import bookImage from "../assets/images/bookImages/the-book-of-love.jpg";
 import { IBook } from "../types/globalTypes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAddToReadingMutation, useAddToWishListMutation } from "../redux/features/books/bookApi";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const BestSeller = ({ books }: { books: any }) => {
+  const [addToWishList]=useAddToWishListMutation()
+  const [addToReading]=useAddToReadingMutation()
+  const {token,auth}=useAuth()
+  const navigate=useNavigate()
   if (!books) {
     return null;
   }
   const lastAddedBooks = books
     .sort((a: { addedAt: number; }, b: { addedAt: number; }) => (a.addedAt < b.addedAt ? 1 : -1))
     .slice(0, 10);
+
+  const onSubmit= async (id: any) => {
+    try {
+      if(!auth){
+        navigate('/login')
+      }
+      const res = await addToWishList({
+        token,
+        id,
+      }).unwrap();
+      if (res?.status === 200) {
+        toast.success("Added to wishlist");
+      }
+
+      if (res?.status === 401) {
+        toast.error("Fail adding wishlist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onSubmitReading= async (id: any) => {
+    try {
+      if(!auth){
+        navigate('/login')
+      }
+      const res = await addToReading({
+        token,
+        id,
+      }).unwrap();
+      if (res?.status === 200) {
+        toast.success("Added to Reading");
+      }
+
+      if (res?.status === 401) {
+        toast.error("Fail adding reading");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {lastAddedBooks?.map((item: IBook) => {
@@ -31,24 +79,24 @@ const BestSeller = ({ books }: { books: any }) => {
                   </Button>
                 </div>
                 <div className="bottom-0 absolute flex justify-center mb-5 text-white">
-                  <TooltipComponent content="Quick View" position="top">
+                  <TooltipComponent content="Add To Reading" position="top">
                     <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3] relative group">
-                      <Button>
-                        <FaEye className="text-xl" />
+                      <Button onClick={()=>onSubmitReading(_id)}>
+                        <FaBookOpen className="text-xl" />
                       </Button>
                     </div>
                   </TooltipComponent>
-                  <TooltipComponent content="Add To WishList" position="top">
+                  <TooltipComponent content="Add To Wishlist" position="top">
                     <div className="h-7 w-7 border border-white flex justify-center items-center ml-2 mr-2 hover:bg-[#4472a3]">
-                      <Button>
+                      <Button onClick={()=>onSubmit(_id)}>
                         <FaHeart className="text-xl" />
                       </Button>
                     </div>
                   </TooltipComponent>
-                  <TooltipComponent content="Add Book" position="top">
+                  <TooltipComponent content="Quick view" position="top">
                     <div className="h-7 w-7 border border-white flex justify-center items-center hover:bg-[#4472a3]">
                       <Button>
-                        <FaPlus className="text-xl" />
+                        <FaEye className="text-xl" />
                       </Button>
                     </div>
                   </TooltipComponent>

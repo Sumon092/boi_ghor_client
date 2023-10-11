@@ -3,7 +3,9 @@ import { HiHeart, HiBookOpen, HiArrowUp } from "react-icons/hi";
 import { Button } from "./UI/Button";
 
 
+
 const SideButton = () => {
+  
     return (
         <>
          <div className="flex justify-between">

@@ -1,0 +1,28 @@
+.card {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 200px;
+  width: 220px;
+  height: auto; 
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transition-delay: 1.5s;
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card-content {
+  font-size: 16px;
+  color: #333;
+  overflow: auto;
+  max-height: 350px;
+}
+
+

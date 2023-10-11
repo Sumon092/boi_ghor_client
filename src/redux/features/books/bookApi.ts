@@ -55,6 +55,45 @@ const bookApi = api.injectEndpoints({
       query: (id) => `/books/get-review/${id}`,
       providesTags: ["reviews"],
     }),
+
+    addToWishList: builder.mutation({
+      query: ({ token, id }) => ({
+        url: `/books/wishList/${id}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
+    addToReading: builder.mutation({
+      query: ({ token, id }) => ({
+        url: `/books/reading/${id}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
+    getWishlists: builder.query({
+      query: (token) => ({
+        url: `/books/wishlists`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
+    getReading: builder.query({
+      query: (token) => ({
+        url: `/books/reading`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -66,4 +105,8 @@ export const {
   useDeleteBookMutation,
   useAddReviewMutation,
   useGetReviewQuery,
+  useAddToWishListMutation,
+  useAddToReadingMutation,
+  useGetReadingQuery,
+  useGetWishlistsQuery,
 } = bookApi;

@@ -5,8 +5,32 @@ import { HiBookOpen, HiHeart } from "react-icons/hi";
 import { useAppDispatch } from "../redux/hook";
 import { logout } from "../redux/features/user/userSlice";
 import useAuth from "../hooks/useAuth";
+import "../styles/Card.css";
+import { useState } from "react";
+import ReadingLists from "../components/ReadingLists";
+import WishLists from "../components/WishLists";
 
 const NavBar = () => {
+  const [hideTimeout, setHideTimeout] = useState<number | null>(null);
+  const [cardContent, setCardContent] = useState<string>("");
+
+  const hideCardAfterDelay = (buttonType: string) => {
+    const card = document.querySelector(".card") as HTMLElement;
+    if (card) {
+      const timeout = window.setTimeout(() => {
+        card.style.display = "none";
+        setCardContent("");
+      }, 1000);
+      setHideTimeout(timeout);
+
+      if (buttonType === "wishlists") {
+        setCardContent("wishlists");
+      }
+      if (buttonType === "reading") {
+        setCardContent("reading");
+      }
+    }
+  };
   const { auth } = useAuth();
   const dispatch = useAppDispatch();
 
@@ -42,13 +66,62 @@ const NavBar = () => {
                 </Button>
               </li>
               <li>
-                <Button variant="ghost">
+                <Button
+                  variant="ghost"
+                  className="reading text-red-500"
+                  onMouseEnter={() => {
+                    const card = document.querySelector(".card") as HTMLElement;
+                    if (card) {
+                      card.style.display = "block";
+                    }
+                  }}
+                  onMouseLeave={() => hideCardAfterDelay("reading")}
+                >
                   <HiBookOpen size="25" />
+                  <div
+                    className="card"
+                    onMouseEnter={() => {
+                      if (hideTimeout) {
+                        window.clearTimeout(hideTimeout);
+                        setHideTimeout(null);
+                      }
+                    }}
+                    onMouseLeave={() => hideCardAfterDelay("reading")}
+                  >
+                    <div className="card-content">
+                      {cardContent === "reading" && <ReadingLists />}
+                    </div>
+                  </div>
                 </Button>
               </li>
+
               <li>
-                <Button variant="ghost">
+                <Button
+                  variant="ghost"
+                  className="wishlists text-red-500"
+                  onMouseEnter={() => {
+                    const card = document.querySelector(".card") as HTMLElement;
+                    if (card) {
+                      card.style.display = "block";
+                    }
+                  }}
+                  onMouseLeave={() => hideCardAfterDelay("wishlists")}
+                >
                   <HiHeart size="25" />
+                  <div
+                    className="card"
+                    onMouseEnter={() => {
+                      if (hideTimeout) {
+                        window.clearTimeout(hideTimeout);
+                        setHideTimeout(null);
+                      }
+                    }}
+                    onMouseLeave={() => hideCardAfterDelay("wishlists")}
+                  >
+                    <div className="card-content">
+                      {cardContent === "wishlists" && <WishLists />}
+                    </div>
+                  </div>
                 </Button>
               </li>
               {auth ? (
