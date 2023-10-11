@@ -1,15 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { toast } from "react-hot-toast";
-
+import { SubmitHandler} from 'react-hook-form';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAddBookMutation } from "../redux/features/books/bookApi";
 import useAuth from "../hooks/useAuth";
-import { IBook } from "../types/globalTypes";
 import { Input } from "../components/UI/Input";
 import NavBar from "../layouts/NavBar";
+import { IBook } from "../types/globalTypes";
+import { toast } from '../components/UI/use-toast';
+import { Toaster } from '../components/UI/Toaster';
+
 
 export default function AddNewBook() {
+
   const [addBook] = useAddBookMutation();
   const navigate = useNavigate();
   const { token } = useAuth();
@@ -18,18 +21,27 @@ export default function AddNewBook() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data: IBook) => {
-    addBook({ data, token }).then((res) => {
-      if (res?.data?.status === 200) {
-        reset();
-        navigate("/");
-        toast(res?.data?.message);
-      }
-    });
+  } = useForm<IBook>();
+  const onSubmit: SubmitHandler<IBook> = (data) => {
+    addBook({ data, token })
+      .unwrap()
+      .then((res) => {
+        if (res?.status === 200) {
+          reset();
+          navigate("/");
+          toast({
+            description: "Book Added successful",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Error adding book:', error);
+      });
   };
+  
   return (
     <>
+    <Toaster/>
       <NavBar />
       <div className="border-2 border-[#5c6baf]">
         <div className="w-1/3 min-h-screen mx-auto">

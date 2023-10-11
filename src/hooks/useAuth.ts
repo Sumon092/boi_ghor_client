@@ -10,7 +10,7 @@ const useAuth = () => {
       try {
         if (token) {
           const response = await fetch(
-            "http://localhost:8000/api/v1/users/user",
+            "https://boighor-server-taupe.vercel.app/api/v1/users/user",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -38,9 +38,7 @@ const useAuth = () => {
     fetchUser();
   }, [token]);
 
-  return { auth, user,token };
+  return { auth, user, token };
 };
 
 export default useAuth;
-
-

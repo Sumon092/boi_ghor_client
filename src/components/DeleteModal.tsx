@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import '../styles/DeleteConfirmationModal.css';
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
@@ -6,40 +8,31 @@ interface DeleteConfirmationModalProps {
   onConfirm: () => void;
 }
 
-const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-}) => {
-  const modalStyles: React.CSSProperties = {
+const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({ isOpen, onClose, onConfirm }) => {
+  const modalStyles = {
     display: isOpen ? 'block' : 'none',
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="modal" style={modalStyles}>
-        <div className="modal-content bg-white p-6 rounded shadow-lg">
-          <p className="text-center text-lg mb-4">
-            Are you sure you want to delete this book?
-          </p>
-          <div className="flex justify-center">
-            <button
-              onClick={onConfirm}
-              className="confirm-button bg-red-500 text-white px-4 py-2 rounded mr-2"
-            >
-              Confirm
-            </button>
-            <button
-              onClick={onClose}
-              className="cancel-button bg-gray-500 text-white px-4 py-2 rounded"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+    <div className="modal flex justify-center items-center" style={modalStyles}>
+      <div className="modal-content w-1/3 mx-auto mt-64">
+        <p>Are you sure you want to delete this book?</p>
+        <button onClick={onConfirm} className="confirm-button mt-10">
+          Confirm
+        </button>
+        <button onClick={onClose} className="cancel-button">
+          Cancel
+        </button>
       </div>
     </div>
   );
 };
 
+DeleteConfirmationModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+};
+
 export default DeleteConfirmationModal;
+

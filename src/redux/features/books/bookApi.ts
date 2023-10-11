@@ -22,7 +22,7 @@ const bookApi = api.injectEndpoints({
       }),
     }),
     updateBook: builder.mutation({
-      query: ({ data, token,id }) => ({
+      query: ({ data, token, id }) => ({
         url: `/books/${id}`,
         method: "PATCH",
         headers: {
@@ -33,11 +33,26 @@ const bookApi = api.injectEndpoints({
       }),
     }),
     deleteBook: builder.mutation({
-      query: ({ id }) => ({
+      query: ({token,id }) => ({
         url: `/books/${id}`,
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }),
     }),
+
+    // deleteBook: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/books/${id}`,
+    //     method: "DELETE",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }),
+    // }),
+
     addReview: builder.mutation({
       query: ({ id, data }) => ({
         url: `/review/${id}`,

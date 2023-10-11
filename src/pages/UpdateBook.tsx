@@ -1,13 +1,14 @@
 import {  useParams } from "react-router-dom";
 import { Input } from "../components/UI/Input";
 import useAuth from "../hooks/useAuth";
-import { useForm } from "react-hook-form";
+import { useForm ,SubmitHandler} from "react-hook-form";
+
 
 import {
   useSingleBookQuery,
   useUpdateBookMutation,
 } from "../redux/features/books/bookApi";
-import { useEffect } from "react";
+import { useEffect,  } from "react";
 import { IBook } from "../types/globalTypes";
 import NavBar from "../layouts/NavBar";
 import { toast } from "../components/UI/use-toast";
@@ -24,21 +25,22 @@ const UpdateBook = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<IBook>();
 
-  const onSubmit = async (formData: IBook) => {
+  const onSubmit : SubmitHandler<IBook> = async (formData) => {
     try {
       const res = await updateBook({
         data: formData,
         token,
         id,
-      });
-      if (res?.data?.status === 200) {
+      }).unwrap();
+      console.log(res.status);
+      if (res?.status === 200) {
         toast({
           description: "Update successful",
         });
       }
-      if(res?.data?.status === 401){
+      if(res?.status === 401){
         toast({
           description: "You are not authenticated to update this",
         });
@@ -62,6 +64,8 @@ const UpdateBook = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
+  
   return (
     <>
       <NavBar />
